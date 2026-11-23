@@ -158,7 +158,7 @@ Sanatçı yok, bu yüzden **kalite işçilikten değil tutarlılıktan** gelecek
 - Üç ayrı şey: **ayarlar** (`ConfigFile`), **meta ilerleme** (hub, açılanlar), **run kaydı** (Revenant ve Observer'ı besleyen ölüm kayıtları). Her biri sürüm numaralı JSON.
 - Kayıt dosyası sürüm alanı taşır, eski sürüm göç (migration) fonksiyonuyla yükselir. Bozuk dosya oyunu çökertmez, yedek tutulur.
 - Steam Cloud ile uyumlu: kayıt `user://` altında tek klasörde. Dosya boyutu küçük tutulur.
-- Run kaydının biçimi (ne kaydedilecek) Revenant/Observer tasarımına bağlıdır. (Memo'ya sor)
+- Run kaydında ne tutulacak (Memo, 2026-11-24): dodge attığı yönler, boss ile ortalama mesafe, en çok kullandığı skill'ler ve benzeri alışkanlık parametreleri. Şema ADR olarak yazılacak (#12).
 
 ### 18. Yerelleştirme (öneri)
 - Diller: **Türkçe ve İngilizce** (ikisi de ekipte konuşuluyor). Başka dil sonra.
@@ -213,6 +213,7 @@ Claude Code'un oyun skill'leri `.claude/skills/` altında repoyla gelir; böylec
 
 ## Açık sorular (Memo'ya)
 - Kamera hissi, dodge/parry zamanlama yardımları ve zorluk ayarları (madde 5, 19).
-- Run kaydının ne içereceği (madde 17).
+- ~~Run kaydının ne içereceği (madde 17).~~ Cevaplandı (#12).
+- Kamera, arayüz ve palet soruları prototip (#9) oynanabilir olunca cevaplanacak (Memo, 2026-11-24).
 - Arayüz fikri: bakış noktaları ve HUD (madde 16).
 - Sanat yönü ana paleti ve karakter silüetleri (madde 6).
