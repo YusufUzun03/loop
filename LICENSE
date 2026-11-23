@@ -1,0 +1,10 @@
+Copyright (c) 2026 the loop project authors. All rights reserved.
+
+This repository is public so the team can work in the open. Public does not
+mean open source: no licence is granted to copy, modify, redistribute or use
+the game code, design documents, lore, art or audio in this repository,
+except for viewing and forking on GitHub as GitHub's Terms of Service allow.
+
+Exception: the third-party skill files under .claude/skills/ are licensed
+under the Apache License 2.0 by their authors. See .claude/skills/NOTICE.md
+and .claude/skills/LICENSE-Apache-2.0.txt.

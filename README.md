@@ -20,3 +20,6 @@ godot --headless --path . -s tests/run_tests.gd
 - [docs/ROADMAP.md](docs/ROADMAP.md): aşamalar
 - [docs/STATE.md](docs/STATE.md): şu anki durum
 - [docs/decisions/](docs/decisions/): tasarım ve teknik kararlar
+
+## Lisans
+Tüm hakları saklıdır, ayrıntı [LICENSE](LICENSE) dosyasında. Repo herkese açık ama açık kaynak değil. `.claude/skills/` altındaki üçüncü taraf skill'ler Apache-2.0'dır ([NOTICE](.claude/skills/NOTICE.md)).
