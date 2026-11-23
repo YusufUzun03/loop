@@ -1,0 +1,33 @@
+name: Soru (Yusuf'a)
+description: Yusuf'un cevaplaması gereken soru
+title: "[Soru] "
+labels: ["soru-yusuf"]
+body:
+  - type: textarea
+    id: soru
+    attributes:
+      label: Soru
+      description: Tek soru, net olsun.
+    validations:
+      required: true
+  - type: textarea
+    id: neden
+    attributes:
+      label: Neden önemli
+      description: Cevaplanmazsa neyi engelliyor? Engelliyorsa `engelliyor` etiketi ekle.
+    validations:
+      required: true
+  - type: textarea
+    id: onerim
+    attributes:
+      label: Önerim
+      description: Yusuf "tamam" ya da "şöyle olsun" diyebilsin.
+    validations:
+      required: true
+  - type: input
+    id: belge
+    attributes:
+      label: Cevap hangi belgeye işlenecek
+      placeholder: docs/GDD.md, docs/decisions/00xx-...md
+    validations:
+      required: true
