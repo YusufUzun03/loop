@@ -1,0 +1,33 @@
+# Godot 4
+.godot/
+.nomedia
+*.translation
+
+# Export outputs and credentials
+/build/
+/export/
+export_credentials.cfg
+*.keystore
+*.jks
+
+# Mono / C# (if ever used)
+.mono/
+data_*/
+mono_crash.*.json
+
+# Editors and OS
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Secrets and local overrides
+.env
+.env.*
+*.pem
+*.key
+
+# Claude Code local settings (personal, never shared)
+.claude/settings.local.json
