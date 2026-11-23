@@ -41,7 +41,7 @@ Bir özelliğin sahnesi ve scripti yan yana durur: `scenes/player/player.tscn` +
 godot --headless --path . --import                 # varlıkları içe aktar (CI'daki build adımı)
 godot --headless --path . -s tests/run_tests.gd    # testleri çalıştır, hata varsa çıkış kodu 1
 ```
-CI (`build-and-test`) her PR'da ve `main`'e push'ta bu iki komutu çalıştırır. Not: CI şimdilik export (derleme paketi) üretmez; export şablonları ve platform kararı sonra eklenecek.
+CI her PR'da ve `main`'e push'ta çalışır: `build-and-test` bu iki komutu, `lint` ise `gdformat --check` ve `gdlint` (gdtoolkit 4.5.0) komutlarını çalıştırır. Yerelde: `pip install "gdtoolkit==4.5.0"`, sonra `gdformat <dosya>` ile biçimle. CI LFS dosyalarını indirmez (ADR 0003). Not: CI şimdilik export (derleme paketi) üretmez; export şablonları ve platform kararı sonra eklenecek.
 
 ## İş akışı
 - Her iş için ayrı dal: `feature/...` veya `fix/...`. `main`'e doğrudan push yok.

@@ -17,7 +17,7 @@ Repo kuruldu: iskelet, CI, şablonlar ve çalışma kuralları hazır. Memo'nun 
 - Memo cevaplayacak: TEKNİK-REHBER "Açık sorular" (kamera, run kaydı, arayüz, palet). Bu cevaplar gelmeden ADR 0002 "önerildi" kalır.
 - Run kaydı veri şeması: Memo'ya iletildi; kodlamadan önce ayrı ADR olarak yazılacak (Revenant ve Observer buna bağlı).
 - Vertical slice bitiş ölçütü (hangi karakter, hangi boss, süre): Memo'ya sorulacak. Memo araştırmadan cevap vermesin; önce Yusuf/Claude'la örnek ve süre araştırması yapılsın.
-- Araştırma notları: `docs/ART.md` içeriği (palet, ölçek; #16'ya bağlı), CI'ya `gdlint`/`gdformat` (ayrı PR). LFS kotası ve `docs/ASSETS.md` iskeleti yapıldı.
+- Araştırma notları: `docs/ART.md` içeriği (palet, ölçek; #16'ya bağlı). LFS kotası, `docs/ASSETS.md` iskeleti ve CI `gdlint`/`gdformat` yapıldı.
 - Çalışma düzeni (CODEOWNERS/CONTRIBUTING doldurma): dosya sayısı artınca Yusuf'a tekrar sorulacak. Şimdilik sahne çatışması kuralı CLAUDE.md'de.
 - Lisans: `LICENSE` eklendi (tüm hakları saklıdır, skill'ler Apache-2.0 istisnası).
 - Prototip aşaması issue'ları açıldı (milestone "Prototip").
