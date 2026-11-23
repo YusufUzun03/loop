@@ -15,6 +15,7 @@ godot --headless --path . -s tests/run_tests.gd
 ```
 
 ## Dokümanlar
+- [docs/BASLANGIC.md](docs/BASLANGIC.md): yeni başlayanlar için kurulum ve kullanım rehberi
 - [CONTRIBUTING.md](CONTRIBUTING.md): çalışma düzeni
 - [docs/ROADMAP.md](docs/ROADMAP.md): aşamalar
 - [docs/STATE.md](docs/STATE.md): şu anki durum

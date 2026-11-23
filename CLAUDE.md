@@ -59,4 +59,7 @@ CI (`build-and-test`) her PR'da ve `main`'e push'ta bu iki komutu çalıştırı
 - Şifre, token, API anahtarı asla repoya yazma.
 - Bittiğinde "Tamam" için ölçüt: build geçiyor, test geçiyor, PR açık, STATE.md güncel.
 
-Slash komutları (`.claude/commands/`): `/yeni-gorev`, `/pr-ac`, `/gunun-ozeti`.
+### Kısayol: "pushla"
+Kullanıcı "pushla", "gönder" veya "yükle" derse (Git bilmeyen ekip arkadaşı için), şunları sırayla ve sormadan yap: `main` üzerindeysen veya bağlı issue yoksa önce issue aç ve `feature/<no>-...` dalı oluştur. Sonra `/pr-ac` akışını uygula (test, STATE.md, commit, push, PR, `Closes #<no>`). `main`'e asla doğrudan push etme. Yaptığın her adımı kullanıcıya düz Türkçeyle kısaca anlat; Git terimlerini ilk geçtiğinde açıkla.
+
+Slash komutları (`.claude/commands/`): `/yeni-gorev`, `/pr-ac`, `/gunun-ozeti`. Yeni başlayanlar için rehber: `docs/BASLANGIC.md`.
