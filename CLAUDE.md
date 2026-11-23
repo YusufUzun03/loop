@@ -3,7 +3,9 @@
 Godot 4.7 ile geliştirilen, iki kişilik ekibin büyük çaplı oyunu. Repo özeldir (private).
 
 ## Oyun tanımı
-> TODO: Tür (2D/3D, tek/çok oyunculu), kısa tanım ve hedef kitle `docs/GDD.md` içinde yazılacak. Burada tek paragraf özet tut.
+**Again** (çalışma adı): 3D, beceriye dayalı bir roguelite. Önce tek oyunculu, sonra host tabanlı online co-op. Oyuncu, dev bir baloncuğa kapanmış antik-teknolojili bir dünyada, rastgele oluşturulan katlı labirentlerde dövüşür; ölünce hub'da uyanır. Her ölüm kaydedilir: geçmiş run'lar Revenant olarak geri döner, final boss Observer ise oyuncunun alışkanlıklarını sayıp final savaşında onlara karşı oynar. 3 karakter (tank, damage, support), her birinin tek silahı var; MMO tarzı üçüncü şahıs kamera, i-frame'siz cooldown'lı dodge, saldırarak parry. Ayrıntılar: `docs/GDD.md`, hikâye: `docs/LORE.md`.
+
+Tasarım lideri Memo'dur. Tasarım kararlarında önce Memo'nun fikrini sor, sonra öneri ekle. Belgelerde kararları "(Memo'nun fikri)" / "(Memo, karar)", Claude eklemelerini "(öneri)" diye işaretle. Sayılar ve ayarlar oyun test edilerek belirlenir: makul bir başlangıç değeri ver ve `@export` ile aç.
 
 ## Motor ve araçlar
 - Motor: Godot 4.7 (GDScript). Sürüm CI'da `.github/workflows/ci.yml` içindeki `GODOT_VERSION` ile sabitlenir. Motoru yükseltmek bir karardır: `docs/decisions/` altına kayıt yaz ve CI sürümünü aynı PR'da değiştir.
