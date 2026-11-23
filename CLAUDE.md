@@ -63,6 +63,14 @@ CI her PR'da ve `main`'e push'ta çalışır: `build-and-test` bu iki komutu, `l
 - Şifre, token, API anahtarı asla repoya yazma.
 - Bittiğinde "Tamam" için ölçüt: build geçiyor, test geçiyor, PR açık, STATE.md güncel.
 
+### Açık sorular
+Memo'ya ve Yusuf'a sorular GitHub issue olarak tutulur: etiketler `soru-memo`, `soru-yusuf`, prototipi durduranlara ek `engelliyor` (şablonlar: `.github/ISSUE_TEMPLATE/soru-*.yml`). Oturum başında `.claude/hooks/sorular.sh` açık olanları listeler.
+- Oturum başında ve kullanıcı "sorular" deyince: açık soruları tek satırla raporla (numara, kime, kaç gündür açık, başlık). Cevap gelenleri kullanıcıya özetle.
+- Cevap gelen soruyu, şablondaki "belge"ye işle (ADR, GDD, TEKNİK-REHBER); commit/PR linkini issue'ya yorum yaz, sonra kapat. Belgeye işlenmeden kapatma.
+- Cevap kullanıcıdan (sohbetten) gelirse issue'ya yorum olarak işle.
+- Soru açarken şablondaki "Önerim"i doldur. Tasarım sorusunda Memo cevaplamadan karar verme; teknik soruda cevap gelmezse önerinle ilerle ve belgede "(öneri)" diye işaretle.
+- Bir kişide aynı anda en fazla 5 açık soru olsun.
+
 ### Kısayol: "pushla"
 Kullanıcı "pushla", "gönder" veya "yükle" derse (Git bilmeyen ekip arkadaşı için), şunları sırayla ve sormadan yap: `main` üzerindeysen veya bağlı issue yoksa önce issue aç ve `feature/<no>-...` dalı oluştur. Sonra `/pr-ac` akışını uygula (test, STATE.md, commit, push, PR, `Closes #<no>`). `main`'e asla doğrudan push etme. Yaptığın her adımı kullanıcıya düz Türkçeyle kısaca anlat; Git terimlerini ilk geçtiğinde açıkla.
 

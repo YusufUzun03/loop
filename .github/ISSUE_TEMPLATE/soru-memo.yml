@@ -1,0 +1,33 @@
+name: Soru (Memo'ya)
+description: Memo'nun cevaplaması gereken tasarım sorusu
+title: "[Soru] "
+labels: ["soru-memo"]
+body:
+  - type: textarea
+    id: soru
+    attributes:
+      label: Soru
+      description: Tek soru, net olsun.
+    validations:
+      required: true
+  - type: textarea
+    id: neden
+    attributes:
+      label: Neden önemli
+      description: Cevaplanmazsa neyi engelliyor? Engelliyorsa `engelliyor` etiketi ekle.
+    validations:
+      required: true
+  - type: textarea
+    id: onerim
+    attributes:
+      label: Önerim
+      description: Memo "tamam" ya da "şöyle olsun" diyebilsin. Öneri tasarım kararı değildir, Memo onaylayana kadar öneridir.
+    validations:
+      required: true
+  - type: input
+    id: belge
+    attributes:
+      label: Cevap hangi belgeye işlenecek
+      placeholder: docs/GDD.md, docs/decisions/00xx-...md
+    validations:
+      required: true
