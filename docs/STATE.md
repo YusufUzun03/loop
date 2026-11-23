@@ -13,6 +13,15 @@ Repo kuruldu: iskelet, CI, şablonlar ve çalışma kuralları hazır. Memo'nun 
 - Alan sahipleri `CONTRIBUTING.md` ve `.github/CODEOWNERS` içine yazılacak.
 - İlk issue'lar ROADMAP "Prototip" aşamasına açılacak.
 
+## Başlamadan önce (2026-11-23 kararları)
+- Memo cevaplayacak: TEKNİK-REHBER "Açık sorular" (kamera, run kaydı, arayüz, palet). Bu cevaplar gelmeden ADR 0002 "önerildi" kalır.
+- Run kaydı veri şeması: Memo'ya iletildi; kodlamadan önce ayrı ADR olarak yazılacak (Revenant ve Observer buna bağlı).
+- Vertical slice bitiş ölçütü (hangi karakter, hangi boss, süre): Memo'ya sorulacak. Memo araştırmadan cevap vermesin; önce Yusuf/Claude'la örnek ve süre araştırması yapılsın.
+- Araştırma notları (sonra yapılacak): `docs/ASSETS.md` ve `docs/ART.md` içeriği (palet, ölçek, CC0 kaynak kaydı), CI'ya `gdlint`/`gdformat`, LFS kotası.
+- Çalışma düzeni (CODEOWNERS/CONTRIBUTING doldurma): dosya sayısı artınca Yusuf'a tekrar sorulacak. Şimdilik sahne çatışması kuralı CLAUDE.md'de.
+- Lisans: `LICENSE` eklendi (tüm hakları saklıdır, skill'ler Apache-2.0 istisnası).
+- Prototip aşaması issue'ları açıldı (milestone "Prototip").
+
 ## Açık sorunlar
+- **Git LFS kotası.** GitHub ücretsiz planda LFS 1 GB depolama + 1 GB/ay bant; kota hesap başınadır, repo private yapınca artmaz. `.glb` eklemeye başlamadan önce araştırılacak: kota kullanımını ölçmek, büyük varlıkları release/itch.io'da tutmak, LFS'siz alternatifler. (Repo public kalır, bilinçli karar.)
 - CI şimdilik import + headless test çalıştırıyor, export üretmiyor. Hedef platform belli olunca eklenecek (GDD'de hedef: PC / Steam).
-- `CLAUDE.md` repoyu "private" diye tanımlıyor ama repo şu an public. Hangisi doğru, Yusuf'la netleşmeli.
