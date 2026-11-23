@@ -11,6 +11,8 @@ Tasarım lideri Memo'dur. Tasarım kararlarında önce Memo'nun fikrini sor, son
 - Motor: Godot 4.7 (GDScript). Sürüm CI'da `.github/workflows/ci.yml` içindeki `GODOT_VERSION` ile sabitlenir. Motoru yükseltmek bir karardır: `docs/decisions/` altına kayıt yaz ve CI sürümünü aynı PR'da değiştir.
 - Büyük binary dosyalar Git LFS ile tutulur (`.gitattributes`). Klonladıktan sonra bir kez `git lfs install` çalıştır.
 
+Teknik kararlar (render, fizik, kamera, sanat hattı, performans bütçesi, kayıt, yerelleştirme): `docs/TEKNIK-REHBER.md`. Oyun skill'leri `.claude/skills/` altındadır (Godot, kamera, AI, prosedürel üretim vb.); ilgili işte kullan.
+
 ## Klasör yapısı
 ```
 assets/        ham ve içe aktarılan varlıklar
