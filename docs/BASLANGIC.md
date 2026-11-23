@@ -16,7 +16,9 @@ Bu rehber, projeye sonradan katılan biri içindir. Git ve GitHub bilmen gerekmi
 | Git | <https://git-scm.com/download/win> | Kurarken her şeyi varsayılan bırak. Git LFS (büyük dosyalar için) bununla birlikte gelir. |
 | GitHub CLI (`gh`) | <https://cli.github.com> | Claude'un issue ve PR açması için gerekli. |
 | Godot 4.7.2 | <https://godotengine.org/download> | Standart (.NET olmayan) sürüm. Sürüm numarası 4.7.2 olsun, farklı sürüm proje dosyalarını bozabilir. |
-| Claude Code | <https://docs.claude.com/en/docs/claude-code> | En kolayı Claude masaüstü uygulamasındaki **Code** sekmesi. **Ücretli Claude planı gerekir** (Pro veya üstü). |
+| Claude Code | <https://docs.claude.com/en/docs/claude-code> | Sende zaten kuruluysa atla. Kurulu değilse en kolayı Claude masaüstü uygulamasındaki **Code** sekmesi. **Ücretli Claude planı gerekir** (Pro veya üstü). |
+
+Rehber Windows içindir. Tüm komutları **PowerShell**'de çalıştır.
 
 Windows'ta PowerShell aç ve şunları sırayla yaz:
 
@@ -78,14 +80,16 @@ Claude issue açar ve bu iş için ayrı bir dal oluşturur.
 ```text
 pushla
 ```
-Claude şunları yapar: testleri çalıştırır, değişiklikleri düzgün commit'lere böler, kendi dalına gönderir, PR açar, issue'ya bağlar, `docs/STATE.md`'yi günceller. `main`'e hiçbir şey doğrudan gitmez. PR'daki kontrol (CI) yeşil olunca Yusuf'a haber ver, birleştirmeyi ya sen ya o yapar.
+Claude şunları yapar: testleri çalıştırır, değişiklikleri düzgün commit'lere böler, kendi dalına gönderir, PR açar, issue'ya bağlar, `docs/STATE.md`'yi günceller. `main`'e hiçbir şey doğrudan gitmez. PR'daki kontrol (CI) yeşil olunca Yusuf'a haber ver, birleştirmeyi ya sen ya o yapar. Birleştirirken GitHub'da **Squash and merge** düğmesini kullanın; tüm değişiklikler tek commit olur ve iş dalı otomatik silinir. Birleştirdikten sonra Claude'a "main'i güncelle" de.
 
 **Gün sonu:**
 ```text
 /gunun-ozeti
 ```
 
-## 5. Örnek: GDD ve lore ekleme
+## 5. İlk iş: GDD ve lore ekleme
+İlk görevin elindeki oyun metnini repoya almak. `pushla` akışını da böylece ilk kez denemiş olursun.
+
 ```text
 Aşağıdaki metin oyunun tasarımı. docs/GDD.md içindeki başlıklara yerleştir.
 Lore uzunsa docs/LORE.md dosyası aç ve GDD'den linkle. Sonra pushla.
@@ -94,7 +98,8 @@ Lore uzunsa docs/LORE.md dosyası aç ve GDD'den linkle. Sonra pushla.
 ```
 
 ## 6. Kurallar ve dikkat
-- Şifre, token, API anahtarı hiçbir dosyaya yazma, Claude'a da yazdırma.
+- Repo **public**: içindeki her şeyi internetteki herkes görebilir. Sadece yazma yetkisi davetle verilir. Şifre, token, API anahtarı, kişisel bilgi hiçbir dosyaya yazma, Claude'a da yazdırma. Telif hakkı olan görsel, ses ve metni koyma.
+- Çok büyük dosyaları (ses, model, video) repoya atmadan önce Yusuf'a sor. Git LFS'in ücretsiz kotası sınırlı.
 - `main`'e doğrudan push yok. Claude yapmak isterse "hayır" de.
 - Aynı sahneyi (`.tscn`) aynı anda Yusuf'la düzenlemeyin. Başlamadan önce haber ver.
 - Claude bir şey sorarsa (karar, emin olmadığı bir şey) varsayma, cevap ver.
