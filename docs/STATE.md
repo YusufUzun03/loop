@@ -23,5 +23,5 @@ Repo kuruldu: iskelet, CI, şablonlar ve çalışma kuralları hazır. Memo'nun 
 - Prototip aşaması issue'ları açıldı (milestone "Prototip").
 
 ## Açık sorunlar
-- **Git LFS kotası.** Araştırıldı: GitHub Free 10 GiB depolama + 10 GiB bant, hesap başına (önceki "1 GB" notu yanlıştı). Öneri ve kurallar `docs/decisions/0003-lfs-ve-buyuk-varliklar.md` (önerildi, Yusuf onayı bekliyor). CI'da `lfs: false` ayrı PR'da yapılacak. `docs/ASSETS.md` iskeleti açıldı. (Repo public kalır, bilinçli karar.)
+- **Git LFS kotası.** Araştırıldı: GitHub Free 10 GiB depolama + 10 GiB bant, hesap başına (önceki "1 GB" notu yanlıştı). Öneri ve kurallar `docs/decisions/0003-lfs-ve-buyuk-varliklar.md` (kabul edildi, 2026-11-24). `docs/ASSETS.md` iskeleti açıldı. (Repo public kalır, bilinçli karar.)
 - CI şimdilik import + headless test çalıştırıyor, export üretmiyor. Hedef platform belli olunca eklenecek (GDD'de hedef: PC / Steam).

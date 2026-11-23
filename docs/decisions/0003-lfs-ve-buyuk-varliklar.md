@@ -1,7 +1,7 @@
 # 0003 - Git LFS kotası ve büyük varlıklar
 
 - Tarih: 2026-11-24
-- Durum: önerildi (Yusuf onaylayınca kabul; kaynak dosya kuralı Memo ile de konuşulacak)
+- Durum: kabul edildi (Yusuf, 2026-11-24; kaynak dosya kuralı ilk modelden önce Memo ile konuşulacak)
 - Karar verenler: Yusuf (teknik), Memo (kendi dosyalarını etkileyen kısım)
 
 ## Bağlam
