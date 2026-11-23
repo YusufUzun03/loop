@@ -16,13 +16,35 @@ env:
   GODOT_VERSION: "4.7.2"
 
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          lfs: false
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - name: Install gdtoolkit
+        run: pip install "gdtoolkit==4.5.0"
+
+      - name: Check formatting
+        run: git ls-files "*.gd" ":!:.claude" | xargs -r gdformat --check
+
+      - name: Lint
+        run: git ls-files "*.gd" ":!:.claude" | xargs -r gdlint
+
   build-and-test:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
+      # LFS assets are not needed for import/tests; skipping saves LFS bandwidth (docs/decisions/0003).
       - uses: actions/checkout@v7
         with:
-          lfs: true
+          lfs: false
 
       - uses: chickensoft-games/setup-godot@v2
         with:
