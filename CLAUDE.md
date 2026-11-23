@@ -1,6 +1,6 @@
 # loop
 
-Godot 4.7 ile geliştirilen, iki kişilik ekibin büyük çaplı oyunu. Repo özeldir (private).
+Godot 4.7 ile geliştirilen, iki kişilik ekibin büyük çaplı oyunu. Repo bilinçli olarak herkese açıktır (public); lore dahil her şey görünür.
 
 ## Oyun tanımı
 **Again** (çalışma adı): 3D, beceriye dayalı bir roguelite. Önce tek oyunculu, sonra host tabanlı online co-op. Oyuncu, dev bir baloncuğa kapanmış antik-teknolojili bir dünyada, rastgele oluşturulan katlı labirentlerde dövüşür; ölünce hub'da uyanır. Her ölüm kaydedilir: geçmiş run'lar Revenant olarak geri döner, final boss Observer ise oyuncunun alışkanlıklarını sayıp final savaşında onlara karşı oynar. 3 karakter (tank, damage, support), her birinin tek silahı var; MMO tarzı üçüncü şahıs kamera, i-frame'siz cooldown'lı dodge, saldırarak parry. Ayrıntılar: `docs/GDD.md`, hikâye: `docs/LORE.md`.
