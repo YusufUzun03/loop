@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git push origin feature/*)",
+      "Bash(git push -u origin feature/*)",
+      "Bash(git push --set-upstream origin feature/*)",
+      "Bash(git push origin fix/*)",
+      "Bash(git push -u origin fix/*)",
+      "Bash(git push --set-upstream origin fix/*)"
+    ],
+    "deny": [
+      "Bash(git push origin main)",
+      "Bash(git push origin main*)",
+      "Bash(git push origin HEAD:main*)",
+      "Bash(git push --force*)",
+      "Bash(git push -f*)",
+      "Bash(git push*--force*)",
+      "Bash(git push* -f)",
+      "Bash(git reset --hard*)",
+      "Bash(gh repo delete*)"
+    ]
+  }
+}
