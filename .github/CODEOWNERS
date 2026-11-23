@@ -1,0 +1,8 @@
+# Alan sahipleri. Doldurulacak; örnek satırlar yorumda.
+# Bir satır eklenince, o yola dokunan PR'larda sahip otomatik review ister.
+#
+# /scenes/        @kullanici
+# /assets/audio/  @kullanici
+# /assets/art/    @kullanici
+# /scripts/       @kullanici
+# /docs/          @kullanici

@@ -1,0 +1,29 @@
+name: Hata bildirimi
+description: Bir şey çalışmıyor
+title: "[Hata] "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: ne
+    attributes:
+      label: Ne oluyor
+    validations:
+      required: true
+  - type: textarea
+    id: adimlar
+    attributes:
+      label: Nasıl tekrarlanır
+      placeholder: |
+        1. ...
+        2. ...
+    validations:
+      required: true
+  - type: textarea
+    id: beklenen
+    attributes:
+      label: Ne olması gerekiyordu
+  - type: input
+    id: ortam
+    attributes:
+      label: Ortam
+      description: Godot sürümü, işletim sistemi, hangi dal/commit

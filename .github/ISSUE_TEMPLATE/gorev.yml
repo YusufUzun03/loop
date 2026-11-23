@@ -1,0 +1,31 @@
+name: Görev
+description: Yapılacak bir iş
+title: "[Görev] "
+body:
+  - type: textarea
+    id: ozet
+    attributes:
+      label: Ne yapılacak
+      description: Tek konu, küçük ve net olsun. Büyük işi parçala.
+    validations:
+      required: true
+  - type: textarea
+    id: kabul
+    attributes:
+      label: Bitti ölçütü
+      description: Bu iş ne zaman tamam sayılır?
+      placeholder: |
+        - [ ] ...
+        - [ ] Testler geçiyor
+    validations:
+      required: true
+  - type: textarea
+    id: dosyalar
+    attributes:
+      label: Dokunulacak sahne/asset
+      description: Çatışma riski olan .tscn/.tres/asset dosyaları varsa yaz.
+  - type: input
+    id: asama
+    attributes:
+      label: Aşama
+      description: Prototip, Çekirdek mekanik, İçerik, Cila veya Çıkış
