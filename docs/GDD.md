@@ -277,7 +277,7 @@ Memo bunu açıkça **yapay zekâsız** istedi: basit sayma kuralları.
 
 **Kapsam kazancı:** Observer boss saldırılarını ve modellerini hologram shader'ıyla tekrar kullanır; yeni bir boss kadar sanat değil, çoğunlukla *varyant* gerekir. Hikâye bağı: 3 boss'u sayısız kez dövüştüğü için saldırılarını bilir.
 
-Açık: boss sırası sabit mi rastgele mi? Run süresi hedefi (~30-40 dk önerildi)? Observer dövüşünde kaç karşı hamle (ör. ilk 3 alışkanlık)?
+Açık: boss sırası sabit mi rastgele mi? Run süresi: **ortalama 20-40 dk** (Memo, karar). Observer dövüşünde kaç karşı hamle (ör. ilk 3 alışkanlık)?
 
 ### Rupture'lar (isteğe bağlı olaylar)
 Odalar arasında giderken zaman döngüsünde aniden bir **rupture (yarık)** çıkabilir (Memo'nun fikri). Oyuncu girip girmemeyi seçer (risk/ödül; atlamak her zaman serbest). Hub'dan baloncuğa girerken kullanılan yarıkla aynı görsel.
@@ -363,6 +363,7 @@ Yeniden dövme animasyonu: **sadece fikir, sonra tekrar bakılacak** (Memo: "we 
 - Motor: **Godot 4** (standart sürüm, GDScript), 3D, MMO tarzı üçüncü şahıs kamera, ayrıca senaryolu balkon kamera geçişleri ve bakış noktası harita görünümü
 - Kontroller: WASD / Shift / Space / Sol tık / Q E R / kilitlenme. Şimdilik kodda kaydediliyor (`PlayerInput`); sonra oyuncular tuş değiştirebilsin diye Project > Input Map'e taşınacak (gamepad desteği de). **Fiziksel tuş kodları** kullanılıyor, QWERTY olmayan klavyelerde (ör. Türkçe F) de çalışır. Harita tuşu yok
 - **Run kaydı (ölüm kaydı fikrinden):** run başına bir kayıt (karakter, build, ölüm sebebi/yeri, odalar ve bosslardan davranış sayıları). Revenant'lar, Observer, Lost Relic, Healer's Rest ve hikâye tetikleyicileri kullanır. Birçok özellik buna bağlı olduğu için erken yapılmaya değer
+  - Kaydedilecek alışkanlık parametreleri (Memo, karar): **dodge attığı yönler**, **boss ile ortalama mesafe**, **en çok kullandığı skill'ler** ve benzeri parametreler. Şema ADR olarak yazılacak (#12)
 - **Aşama üretimi (Memo, karar): elle yapılmış parçalar, rastgele bağlanır.** Elle yapılmış odalar ile koridor, merdiven ve kat parçaları birkaç katlı bir labirent oluşturacak şekilde birleşir. Aşama başına 10 oda + boss odası, anahtar rastgele bir odada, aşama başına en az 1 bakış noktası. Temel dövüş prototipinden sonra planlanacak, büyük teknik parçalardan biri
 - **Bakış noktası haritası:** bakış noktasında dururken oluşturulan labirentin tamamını göster (tüm katlar, odalar ve neyi göstereceğine karar verirsek). Başka hiçbir yerde harita yok
 - **Görsel kod (Claude):** hologram, glitch'ler, ölümde geri sarma, baloncuk parıltısı, parlayan devreler (yeşil / turuncu-sarı / camgöbeği), yer tehlike uyarıları için shader ve efektler; alan başına ışık ve sis
@@ -480,7 +481,7 @@ Bilerek yapılmayacaklar (kapsamı korumak için):
 - Support: turret pet sayısı, yok edilebilir mi, ayrılmış alan nasıl yerleşir ve taşınır
 - "Neden her odayı temizlemiyorsun" bedellerinin her birinin gücü (Observer verisi, yıpranma, kararsızlık)
 - Labirent boyutu, aşama başına kat sayısı ve bakış noktası sayısı
-- Revenant dövüşü zorluk ölçekleme; rupture'ların ne sıklıkla çıktığı; run süresi
+- Revenant dövüşü zorluk ölçekleme; rupture'ların ne sıklıkla çıktığı; run süresinin 20-40 dk hedefi içinde kalması
 
 **Hikâye / sonra:** bkz. [LORE.md](LORE.md#açık-sorular)
 - Yeniden dövme ayrıntıları
