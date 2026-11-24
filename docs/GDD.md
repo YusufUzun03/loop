@@ -158,8 +158,18 @@ Kit tasarım kuralı (Memo): skill'ler sadece bosslara karşı değil, **hepsind
 - **Saldırarak parry (Memo'nun fikri, sadece yakın dövüş):** boss'un saldırısı tam isabet ederken **saldırırsan** onu **parry'lersin**. Parry, 2-3 skill'inin **daha çok hasar verdiği** bir pencere açar. Yani dövüş sol tık spam'i değil: boss'u izler, saldırılarını zamanlarsın
   - **Kural: menzilli = parry yok (Memo, karar).** Menzilli oyuncular çoğu zaman güvenli mesafede durduğu için parry'den vazgeçer. Support ve fırlatma bıçaklı damage için geçerli
   - Açık: support'un **kendi skill bonus penceresini kazanma yolu** olmalı, yoksa skill'leri yakın dövüşün yanında sönük kalır. Fikirler: boss'a hazırlık anında vurmak, turret'ı bir süre hayatta tutmak (karar verilecek, önce Memo'nun fikri). Menzilli damage bunu **çok daha yüksek temel hasarla** telafi eder
+- **Temel saldırı ve parry kuralları (Memo, karar, 2026-11-24, #10):**
+  - **Kısa tık = hızlı vuruş, basılı tut = yüklenen ağır vuruş** (bırakınca iner)
+  - Saldırırken **yavaş yürürsün**; **dodge saldırıyı her an iptal eder.** İptal edilen vuruş hasar vermez
+  - **Hızlı vuruşla parry:** düşmanın vuruşu isabet etmeden **en çok 0.1 sn önce ile isabet anı** arasında saldırıya basmak
+  - **Ağır vuruşla parry:** sadece **tam aynı anda**: ağır vuruşun indiği an düşmanın isabetiyle aynı olmalı (tolerans ~2 kare, 0.035 sn). 0.1 sn penceresi ağır vuruşta geçerli değil
+  - **Saldırana dönük olmak gerekir** (öneri: en çok 60° açı, `@export`)
+  - **Parry yapan vuruş hasar vermez.** Ödülü skill bonus penceresi (yukarıdaki kural; skill'ler gelince bağlanacak)
+  - Başarılı parry'de **parlama ve ses.** Donma (hit-stop) ve düşman sendelemesi yok
+  - Girdi tamponu (#16): dodge sırasında basılan saldırı dodge bitince çıkar; cooldown bitmeden hemen önce basılan dodge, cooldown bitince atılır. Parry penceresini genişletmez
+  - Tüm süreler Player > Combat düğümünde `@export`; sayıları test belirler
 - Öneriler / karar verilecek (çoğu test edilerek):
-  - **Parry penceresi:** başta cömert mi? (ör. ~0.2 sn). Upgrade'lerle genişleyebilir veya değişebilir (2. sütun)
+  - **Parry penceresi:** Memo 0.1 sn seçti (yukarıda; önceki öneri ~0.2 sn idi). Upgrade'lerle genişleyebilir veya değişebilir (2. sütun)
   - **Hangi saldırılar parry'lenir:** parry'lenebilen saldırılarda net bir sinyal (ör. silahta parlama veya halka) ve parry'lenemeyen bazı saldırılar (dodge veya zıplama gerekir), böylece oyuncu her saldırıyı okumak zorunda kalır
   - **Kaçan parry:** sadece darbeyi yersin (risk/ödül). Yanlış zamanda saldırmak cezadır
   - **Tank ve damage için aynı parry, farklı ödül?** ör. tank parry'si boss'u sersemletir, damage parry'si kritik penceresi verir

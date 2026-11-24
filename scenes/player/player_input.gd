@@ -17,6 +17,8 @@ var move_direction: Vector3 = Vector3.ZERO
 var wants_jump: bool = false
 var wants_dodge: bool = false
 var wants_attack: bool = false
+## True while the attack button is held down (charging a heavy attack).
+var attack_held: bool = false
 
 
 ## Called by the Player at the start of every physics frame, so the intent
@@ -32,6 +34,7 @@ func poll() -> void:
 	wants_jump = Input.is_action_just_pressed("jump")
 	wants_dodge = Input.is_action_just_pressed("dodge")
 	wants_attack = Input.is_action_just_pressed("attack")
+	attack_held = Input.is_action_pressed("attack")
 
 
 ## Makes WASD relative to where the camera is looking, flattened onto the
