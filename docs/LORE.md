@@ -181,6 +181,9 @@ Notlar / öneriler:
 - Oynanışta desteklemek için fikirler (öneri):
   - Çok nadiren, **oyuncunun hiç yaratmadığı bir Revenant** çıkar: Observer'ın daha önce çektiği bir savaşçının kaydı. Oyuncununkinden önceki döngülerin kanıtı
   - Dünyada eski izler: duvarlara kazınmış çentikler, önceki savaşçılardan (ve Observer'ın kendi ilk döngülerinden) notlar, belki geçiş sırlarında gizli
+- **İlk 10 run'daki Revenant'lar Observer'ın eski hâlleri (Memo'nun fikri, 2026-11-24):** oyuncunun en yeni 10 run'ı Revenant için kullanılmadığından (ADR 0004), ilk run'larda karşına Observer'ın kendi geçmiş kayıtları çıkar. **Hikâye hakkında ipuçları bırakırlar.** Oyuncu bunların kim olduğunu o an bilmez; sadece hikâyeyle ilgilenen biri, oyunun çok sonraki evrelerinde fark edebilir. Ayrıntılar sonra konuşulacak (Memo)
+  - Bağlantı: "Do you think this is the first time?" sorusunun oynanıştaki ilk kanıtı oyuncunun ilk saatlerinde, farkında olmadan önüne konmuş olur
+  - Öneri: Observer'ın hikâyesindeki aşamalara (umutlu → kararlı → takıntılı) denk gelen farklı eski hâller olabilir; görünümleri eskimiş ama tanıdık bir ipucu taşıyabilir (ör. camgöbeği bir detay)
 
 ## Karakterler
 Üçü de **Observer'ın hub'ına gelen ve baloncuğa girmeyi seçen güçlü savaşçılar;** çekirdeğe ulaşmanın dünyayı geri getirebileceği vaadine inanıyorlar. Oynanış: [GDD.md](GDD.md#karakterler-çıkışta-3-her-biri-tek-başına-oynanabilir).
