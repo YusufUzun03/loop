@@ -73,7 +73,7 @@ Pre-production kaynaklarının ortak noktası: motor/araç seçimi en pahalı ka
 ### 5. Kamera ve görünüm (GDD'ye uygun; ayrıntı Memo'ya sorulur)
 - MMO tarzı üçüncü şahıs: oyuncu etrafında yörünge kamera + `SpringArm3D` (duvara girmesin). Kilitlenmede (lock-on) hedef ve oyuncu aynı karede kalır.
 - Dar koridor ve merdivenlerde kameranın durumu GDD'de risk olarak belirtilmiş: kamera çarpışması, otomatik yaklaşma ve duvar saydamlığı prototipin ilk testlerinden biridir. (prototipte doğrula)
-- FOV, kamera mesafesi, omuz kaydırma, hassasiyet: `@export` ile açık, ayarlar menüsünde oyuncuya da açık (FOV, sallantı, hassasiyet). (Memo'ya sor: his)
+- FOV, kamera mesafesi, omuz kaydırma, hassasiyet: `@export` ile açık, ayarlar menüsünde oyuncuya da açık (FOV, sallantı, hassasiyet). Memo (2026-11-24): prototipteki varsayılanlar (mesafe 10 m, 32° yukarıdan, zoom 4-18 m) iyi, böyle kalsın; ince ayar bosslar gelince.
 - Sallantı (screen shake) ve vuruş durması (hit-stop) tek bir "game feel" servisinde toplanır; oyuncu ayarı ile kısılabilir.
 
 ### 6. Sanat yönü (Yusuf, karar: sanatçı olmadan elimizden gelen en kaliteli iş)
@@ -152,7 +152,7 @@ Sanatçı yok, bu yüzden **kalite işçilikten değil tutarlılıktan** gelecek
 - Godot `Control` düğümleri + **tek Tema** (`theme.tres`): renk, font, boyutlar tek yerde. Hologram/glitch hissi shader ile.
 - Ölçekleme: temel çözünürlük 1920x1080, `canvas_items` stretch, `expand`. Ultrawide ve 1280x800'de bozulmaz. Metin Deck'te okunur (alt sınır madde 1).
 - HUD olay (sinyal) ile güncellenir, her karede yoklama yok. Gamepad odağı (focus) bütün menülerde çalışır; ekranda gösterilen tuş simgeleri girişe göre (klavye/gamepad) değişir.
-- Minimap yok (GDD): bakış noktaları (lookout) arayüzü ayrıca tasarlanır. (Memo'ya sor)
+- Minimap yok (GDD). **HUD az ve sade (Memo, 2026-11-24):** can, dodge cooldown'ı, 2-3 skill simgesi; boss canı sadece boss odasında. Bakış noktası arayüzü: GDD "Minimap yerine bakış noktaları" (duvarda küçük ekran, koridorun ortasında 3D hologram harita).
 
 ### 17. Kayıt ve ilerleme (öneri)
 - Üç ayrı şey: **ayarlar** (`ConfigFile`), **meta ilerleme** (hub, açılanlar), **run kaydı** (Revenant ve Observer'ı besleyen ölüm kayıtları). Her biri sürüm numaralı JSON.
@@ -167,7 +167,7 @@ Sanatçı yok, bu yüzden **kalite işçilikten değil tutarlılıktan** gelecek
 - Lore metinleri çok olduğu için çeviri tek seferde değil, sürüm sonuna doğru toplanır; ama **anahtar sistemi baştan** kurulur.
 
 ### 19. Erişilebilirlik (öneri)
-- Altyazı ve boyut ayarı, renk körü için **renkten başka ipucu** (şekil/simge), parlama/sallantı/hit-stop kısma, tuş yeniden atama, dodge/parry zamanlama yardımı ya da zorluk ayarı (Memo'ya sor: tasarımı etkiler).
+- Altyazı ve boyut ayarı, renk körü için **renkten başka ipucu** (şekil/simge), parlama/sallantı/hit-stop kısma, tuş yeniden atama, dodge/parry zamanlama yardımı. **Memo (2026-11-24): sadece girdi tamponu** (tuşa biraz erken basınca da sayılır; süre `@export`, testle belirlenir). Zorluk seviyesi veya yardım modu yok.
 - Steam Deck ve genel okunabilirlik için arayüz ölçeği ayarı.
 
 ### 20. Performans (öneri; ölçerek karar)
@@ -212,8 +212,8 @@ Statik tipleme, `snake_case`/`PascalCase`, sihirli sayı yok, sinyaller geçmiş
 Claude Code'un oyun skill'leri `.claude/skills/` altında repoyla gelir; böylece Memo'nun Claude'u da aynı bilgiyi kullanır. Kaynak: <https://github.com/gamedev-skills/awesome-gamedev-agent-skills> (Apache-2.0, `NOTICE-skills.md`). Yalnız Godot ve ilgili genel disiplin skill'leri alındı, başka motorlarınkiler değil.
 
 ## Açık sorular (Memo'ya)
-- Kamera hissi, dodge/parry zamanlama yardımları ve zorluk ayarları (madde 5, 19).
+- ~~Kamera hissi, dodge/parry zamanlama yardımları ve zorluk ayarları (madde 5, 19).~~ Cevaplandı (#16).
 - ~~Run kaydının ne içereceği (madde 17).~~ Cevaplandı (#12).
-- Kamera, arayüz ve palet soruları prototip (#9) oynanabilir olunca cevaplanacak (Memo, 2026-11-24).
-- Arayüz fikri: bakış noktaları ve HUD (madde 16).
-- Sanat yönü ana paleti ve karakter silüetleri (madde 6).
+- Kamera, arayüz ve palet soruları prototip oynanabilir olunca cevaplandı (#16, 2026-11-24); palet hariç.
+- ~~Arayüz fikri: bakış noktaları ve HUD (madde 16).~~ Cevaplandı (#16).
+- Sanat yönü ana paleti ve karakter silüetleri (madde 6). Hâlâ açık (#16).
