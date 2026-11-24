@@ -5,15 +5,19 @@ Son güncelleme: 2026-11-24
 ## Şu an
 Repo kuruldu: iskelet, CI, şablonlar ve çalışma kuralları hazır. Memo'nun tasarım notları repoya alındı: oyun tasarımı `docs/GDD.md`, hikâye `docs/LORE.md` (issue #4). Genel teknik yön: `docs/TEKNIK-REHBER.md` ve `docs/decisions/0002-teknik-yon.md`; Godot/oyun skill'leri `.claude/skills/` altında (issue #7).
 
-2026-11-24'te üç PR açıldı (bu STATE güncellemesi üçünü birden anlatır):
-- **Oyuncu prototipi (#9):** Memo'nun prototipi `scenes/player/`, `scenes/camera/`, `scenes/test_room/` altına alındı. Hareket, zıplama, i-frame'siz cooldown'lı dodge, MMO kamera. Tuşlar `project.godot` Input Map'te, çarpışma katmanları isimli, ana sahne test odası. 9 yeni headless test. Memo Godot'ta oynadı: temel his iyi.
-- **Run kaydı ADR taslağı (#12):** `docs/decisions/0004-run-kaydi.md`. Memo parametreleri, karaktere göre dodge yönünü ve 30 run saklamayı (en yeni 10'u kullanılmaz) onayladı. İlk 10 run'da Observer'ın eski hâlleri çıkacak (LORE).
-- **#16 cevapları:** kamera varsayılanları kalıyor; sadece girdi tamponu, zorluk modu yok; HUD az ve sade; bakış noktası duvarda küçük ekran + koridorda 3D hologram harita (GDD).
+Oyuncu prototipi (#9), run kaydı ADR taslağı (#12, `docs/decisions/0004-run-kaydi.md`) ve #16 cevapları main'de.
+
+2026-11-24'te iki PR daha açıldı (#11, #10'un üstüne kurulu; önce #10 birleşmeli):
+- **Saldırı ve parry (#10):** `scenes/player/player_combat.gd`. Kısa tık hızlı, basılı tut ağır vuruş; dodge saldırıyı iptal eder. Hızlı vuruşla parry: isabetten en çok 0.1 sn önce basmak; ağır vuruşla parry: sadece tam aynı an (~2 kare); saldırana dönük olmak şart; parry yapan vuruş hasar vermez, skill bonus penceresi açar (skill'ler sonra). Parlama ve geçici kod sesi. `scripts/health.gd`. Girdi tamponu (dodge ve saldırı).
+- **Hedef düşman (#11):** `scenes/enemies/test_enemy/`. Oyuncuyu navmesh ile kovalar; parry'lenebilen vuruş (silahta parlama), sola/sağa süpürme (bir taraf güvenli), şok dalgası (üstünden zıpla). Yer uyarıları macenta (Memo, karar). Her saldırının run kaydı için kimliği var. Vuruşlar duvardan geçmez (`scripts/line_of_sight.gd`). Test odasında geçici can yazısı.
+- Memo ikisini Godot'ta oynadı: iyi. 34 headless test.
 
 ## Sıradaki
 - Yusuf: ADR 0004'ün teknik onayı (dosya düzeni, `RunRecorder` autoload).
-- #10 temel saldırı + parry: başlamadan önce Memo'nun saldırı ve parry hissi fikri alınacak. Parry penceresi ve girdi tamponu ayrı `@export` değerleri olacak.
-- #11 sinyalli saldırıları olan hedef düşman, sonra run kaydı kodu (`RunRecorder`), sonra odalar/labirent.
+- Run kaydı kodu (`RunRecorder`): oyuncunun `dodged`/`parried` ve düşmanın `attack_telegraphed`/`attack_landed` sinyallerini dinleyip ADR 0004'teki sayımları tutar.
+- İlk karakter kiti (Q/E/R skill'leri, parry bonus penceresinin kullanımı): önce Memo'nun fikri.
+- Gerçek ölüm (hub'da uyanma); şimdilik oyuncunun canı 0'da doluyor.
+- Odalar/labirent (elle yapılmış parçalar + hazır navmesh).
 - Gamepad desteği (TEKNIK-REHBER madde 11): Input Map'e eklenecek, prototipte henüz yok.
 - `docs/ART.md` (palet, ölçek) yazılacak; palet ve silüet Memo'ya sorulacak (#16'da açık kalan).
 - Alan sahipleri `CONTRIBUTING.md` ve `.github/CODEOWNERS` içine yazılacak.
@@ -30,4 +34,5 @@ Repo kuruldu: iskelet, CI, şablonlar ve çalışma kuralları hazır. Memo'nun 
 ## Açık sorunlar
 - **Git LFS kotası.** GitHub Free 10 GiB depolama + 10 GiB bant, hesap başına. Kurallar `docs/decisions/0003-lfs-ve-buyuk-varliklar.md` (kabul edildi). (Repo public kalır, bilinçli karar.)
 - CI şimdilik import + headless test çalıştırıyor, export üretmiyor. Hedef platform belli olunca eklenecek (GDD'de hedef: PC / Steam).
+- Test çalıştırıcısı (`tests/run_tests.gd`) fizik karesi ilerletemiyor; görüş hattı ve navmesh elle (tek seferlik script) doğrulandı. Ayrıca bir script hatasında headless çalıştırıcı kapanmak yerine askıda kalıyor (CI 15 dk timeout'a kadar bekler). Yusuf ile bakılmalı.
 - `tests/run_tests.gd.uid` ve `tests/test_smoke.gd.uid` repoda yok; Godot her import'ta üretiyor. Commit edilip edilmeyeceği Yusuf'a sorulmalı.
