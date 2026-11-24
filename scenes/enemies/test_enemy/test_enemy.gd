@@ -80,6 +80,7 @@ var _rng := RandomNumberGenerator.new()
 @onready var weapon_mesh: MeshInstance3D = $Visual/Weapon
 @onready var sweep_warning: MeshInstance3D = $SweepWarning
 @onready var shockwave_ring: MeshInstance3D = $ShockwaveRing
+@onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
 
 
 func _ready() -> void:
@@ -182,14 +183,31 @@ func _process_chase(delta: float) -> void:
 	if target == null:
 		_stop()
 		return
-	_turn_toward(target.global_position, delta)
 	var distance := global_position.distance_to(target.global_position)
-	if distance <= attack_range:
+	var can_see := LineOfSight.between(self, target)
+	if distance <= attack_range and can_see:
+		_turn_toward(target.global_position, delta)
 		_start_attack(_pick_attack())
 		return
-	var chase := chase_velocity(global_position, target.global_position, move_speed)
+	# Walk the navigation path around walls and pillars; straight line when
+	# there's no navigation map (for example in tests).
+	var next_point := _next_path_point()
+	_turn_toward(next_point, delta)
+	var chase := chase_velocity(global_position, next_point, move_speed)
 	velocity.x = chase.x
 	velocity.z = chase.z
+
+
+func _next_path_point() -> Vector3:
+	if nav_agent == null or not is_inside_tree():
+		return target.global_position
+	nav_agent.target_position = target.global_position
+	var next_point := nav_agent.get_next_path_position()
+	var flat := Vector3(next_point.x - global_position.x, 0.0, next_point.z - global_position.z)
+	if flat.is_zero_approx():
+		# Path not ready yet (first frames) or already there.
+		return target.global_position
+	return next_point
 
 
 func _pick_attack() -> Attack:
@@ -259,9 +277,11 @@ func _process_shockwave(delta: float) -> void:
 			. length()
 		)
 		var height := target.global_position.y - global_position.y
-		if shockwave_hits(
+		var ring_hits := shockwave_hits(
 			previous, _shockwave_radius, flat_distance, height, shockwave_clear_height
-		):
+		)
+		# Walls and pillars stop the ring.
+		if ring_hits and LineOfSight.between(self, target):
 			_shockwave_hit_done = true
 			_hit_target(shockwave_damage, false)
 			attack_landed.emit(ATTACK_IDS[Attack.SHOCKWAVE], true)
@@ -271,7 +291,9 @@ func _process_shockwave(delta: float) -> void:
 		_finish_attack()
 
 
-func _land(hit: bool, damage: int, parryable: bool) -> void:
+func _land(in_area: bool, damage: int, parryable: bool) -> void:
+	# No hits through walls: the target must be in the area and visible.
+	var hit := in_area and LineOfSight.between(self, target)
 	if hit:
 		_hit_target(damage, parryable)
 	attack_landed.emit(ATTACK_IDS[current_attack], hit)

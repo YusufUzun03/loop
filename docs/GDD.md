@@ -237,7 +237,9 @@ Kit tasarım kuralı (Memo): skill'ler sadece bosslara karşı değil, **hepsind
 - Run'larda mini bosslar da çıkar
 - Kamera: bazı boss saldırılarında Observer'ın balkon görüşüne geçilir
 - Saldırı türleri (öneri): parry'lenebilen (sinyalli), sadece dodge'lanan ve üstünden zıplanan (şok dalgası, süpürme) saldırılar. Dodge'da dokunulmazlık olmadığı için sadece dodge'lanan her saldırı, kaçılacak gerçek bir boşluk bırakmalı
-- Yer uyarıları, teknoloji ışığında kullanılmayan özel bir tehlike rengi kullanır
+- Yer uyarıları, teknoloji ışığında kullanılmayan özel bir tehlike rengi kullanır (macenta)
+- **Saldırılar duvarın arkasına geçmez** (Memo, 2026-11-24): oyuncu ve düşman vuruşları arada duvar/sütun varsa isabet etmez
+- **Alan saldırılarında yükseklik kontrolü yok** (Memo, 2026-11-24): boss odaları düzdür, özel bir mekanik konmadıkça yükselti olmaz. Yükselti olan bir boss odası tasarlanırsa o boss için ayrıca düşünülür. (Şok dalgası bunun dışında: üstünden zıplanır)
 
 **Boss ödülleri (Memo):** bosslar, damage'ın fırlatma bıçakları gibi **build değiştiren upgrade'ler** verebilir.
 - Öneri: büyük, oyun stilini değiştiren upgrade'lerin (form değişimleri, evrimler) yeri boss ödülleri olsun, normal odalar küçük upgrade'ler versin

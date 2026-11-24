@@ -249,7 +249,10 @@ func _on_strike_resolved(_kind: PlayerCombat.Kind, deals_damage: bool) -> void:
 	if not deals_damage:
 		return
 	for body in attack_hitbox.get_overlapping_bodies():
-		if body != self and body.has_method("take_damage"):
+		if body == self or not body.has_method("take_damage"):
+			continue
+		# No hits through walls.
+		if body is Node3D and LineOfSight.between(self, body as Node3D):
 			body.take_damage(combat.get_damage())
 
 

@@ -92,6 +92,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
 visible = false
 mesh = SubResource("TorusMesh_ring")
 
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_desired_distance = 0.6
+target_desired_distance = 1.0
+radius = 0.5
+
 [node name="Health" type="Node" parent="."]
 script = ExtResource("2_health")
 max_health = 100
