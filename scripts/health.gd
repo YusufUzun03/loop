@@ -33,6 +33,12 @@ func damage(amount: int) -> void:
 		died.emit()
 
 
+## Back to full health (respawns, prototype death).
+func reset() -> void:
+	current = max_health
+	health_changed.emit(current, max_health)
+
+
 func heal(amount: int) -> void:
 	if is_dead() or amount <= 0:
 		return
