@@ -86,6 +86,13 @@ Hub → baloncuğa gir → aşama (10 oda + boss odası, en az 1 bakış noktas�
 - Her aşamada **en az 1 bakış noktası** var: **tüm haritayı, içindeki her şeyi görebildiğin** bir yer
 - Haritaya **başka hiçbir yerden erişemezsin.** Oyuncu gördüğünü hatırlayıp yolunu bulmalı
 - 1. sütuna uyar: hafıza ve yön bulma menü kontrol etmek değil, beceri olur
+- **Nasıl görünür (Memo'nun fikri, 2026-11-24):**
+  - Bakış noktası, **duvarda küçük bir ekran** gibi bir şey
+  - **Her karakter onunla farklı etkileşime geçer.** Ayrıntılar karakter tasarımında konuşulacak (Memo)
+  - Etkileşimden sonra harita, **koridorun ortasına 3D hologram olarak yansır.** Labirentin katları olduğu için düz bir harita yerine 3D görüntü
+  - Öneri: hologram camgöbeği olabilir (Observer'ın rengi; bakış noktalarının "Observer'ın gözü" olduğu hikâye bağına uyar). Hikâye bağındaki "antik terminal" fikriyle de örtüşüyor
+  - Öneri (tank/damage/support farkı için başlangıç fikri, Memo'nun fikri önce): healer teknolojiyi anladığı için daha çok bilgi görebilir; diğerleri kaba kuvvetle çalıştırır
+  - Özgünlük notu: 3D hologram haritalar var (ör. Metroid Prime serisinin 3D haritası, Dead Space'in hologram haritası). Bizimkini farklı kılan: harita sadece o terminalde açılıyor, karaktere göre farklı etkileşim istiyor ve dünyanın içinde, koridorda duruyor
 - Öneriler / karar verilecek:
   - **Bakış noktası ne gösterir:** "içindeki her şey" (Memo) odaları, boss odasını, **anahtarın yerini**, sırları, rupture'ları kapsayabilir. Anahtarı göstermek bakış noktasına ulaşmayı çok değerli yapar (gerçek bir seçim: önce bakış noktasını mı bulacaksın, körlemesine mi arayacaksın?)
   - **Yerleri:** her run rastgele, böylece bulmak da işin parçası; ya da biri hep başlangıca yakın, oyuncu ilk saniyeden kaybolmasın

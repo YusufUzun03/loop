@@ -1,7 +1,7 @@
 # 0002 - Genel teknik yön
 
 - Tarih: 2026-11-23
-- Durum: önerildi (Memo'nun görüşü bekleniyor; Yusuf hedef/sanat/skill kararlarını verdi)
+- Durum: önerildi (Yusuf hedef/sanat/skill kararlarını verdi; Memo kamera, zamanlama yardımı ve HUD'u cevapladı 2026-11-24 (#16); palet ve silüet açık)
 - Karar verenler: Yusuf (teknik yön), Memo (tasarımı etkileyen maddeler)
 
 ## Bağlam
