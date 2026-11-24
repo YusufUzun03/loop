@@ -237,7 +237,9 @@ Kit tasarım kuralı (Memo): skill'ler sadece bosslara karşı değil, **hepsind
 - Run'larda mini bosslar da çıkar
 - Kamera: bazı boss saldırılarında Observer'ın balkon görüşüne geçilir
 - Saldırı türleri (öneri): parry'lenebilen (sinyalli), sadece dodge'lanan ve üstünden zıplanan (şok dalgası, süpürme) saldırılar. Dodge'da dokunulmazlık olmadığı için sadece dodge'lanan her saldırı, kaçılacak gerçek bir boşluk bırakmalı
-- Yer uyarıları, teknoloji ışığında kullanılmayan özel bir tehlike rengi kullanır
+- Yer uyarıları, teknoloji ışığında kullanılmayan özel bir tehlike rengi kullanır (macenta)
+- **Saldırılar duvarın arkasına geçmez** (Memo, 2026-11-24): oyuncu ve düşman vuruşları arada duvar/sütun varsa isabet etmez
+- **Alan saldırılarında yükseklik kontrolü yok** (Memo, 2026-11-24): boss odaları düzdür, özel bir mekanik konmadıkça yükselti olmaz. Yükselti olan bir boss odası tasarlanırsa o boss için ayrıca düşünülür. (Şok dalgası bunun dışında: üstünden zıplanır)
 
 **Boss ödülleri (Memo):** bosslar, damage'ın fırlatma bıçakları gibi **build değiştiren upgrade'ler** verebilir.
 - Öneri: büyük, oyun stilini değiştiren upgrade'lerin (form değişimleri, evrimler) yeri boss ödülleri olsun, normal odalar küçük upgrade'ler versin
@@ -440,7 +442,7 @@ Yeniden dövme animasyonu: **sadece fikir, sonra tekrar bakılacak** (Memo: "we 
 - **Observer'ın balkon hologramı her aşamada camgöbeği**, yeşil ve turuncu alanlarda göze batar (haberci)
 - Öneriler / dikkat:
   - Yeşil ışık ile yeşil yosun: ışık yosundan daha parlak ve doygun olmalı (ya da yosun daha koyu), teknoloji net okunsun
-  - **Tehlike rengi:** yerdeki boss saldırı uyarılarının dünyanın teknolojide hiç kullanmadığı kendi rengi olmalı (ör. kırmızı veya beyaz), tehlike süsle asla karışmasın
+  - **Tehlike rengi: macenta (Memo, karar, 2026-11-24).** Yerdeki saldırı uyarıları dünyanın teknolojide hiç kullanmadığı bu renkte; üç teknoloji renginden (yeşil, turuncu, camgöbeği) de uzak, tehlike süsle asla karışmaz. Parry'lenebilen vuruşun sinyali ise silahta parlama (#11)
   - Kahraman ana renkleri: yeşil/turuncu/camgöbeğinden kaçın, kahramanlar her alanda öne çıksın
   - Erken camgöbeği anlar (ses glitch'leri, hologram, rupture'lar?) açıklamadan önce Observer'ı ima edebilir
   - Hub / dış dünya (öneri): gri ve renksiz (geriye bir şey kalmamış), tek güçlü renk baloncuğun camgöbeği parıltısı
@@ -486,7 +488,7 @@ Bilerek yapılmayacaklar (kapsamı korumak için):
 - Co-op: labirentte ayrılmak, boss'a ne zaman gidileceğine kim karar verir
 
 **Sanat:**
-- Tehlike uyarı rengi (öneri: kırmızı veya beyaz, teknolojide asla kullanılmayan)
+- ~~Tehlike uyarı rengi~~: macenta (Memo, karar)
 - Her kahramanın ana rengi
 - Hub / dış dünya paleti (öneri: gri, baloncuğun camgöbeği parıltısıyla)
 

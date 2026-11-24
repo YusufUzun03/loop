@@ -73,6 +73,8 @@ var _pending_hits: Array[Dictionary] = []
 func _ready() -> void:
 	combat.strike_landed.connect(_on_strike_landed)
 	combat.strike_resolved.connect(_on_strike_resolved)
+	# Prototype only: real death (waking up in the hub) comes later.
+	health.died.connect(health.reset)
 	parry_flash.visible = false
 	parry_sound.stream = PlaceholderSfx.ping(PARRY_SOUND_FREQUENCY, PARRY_SOUND_LENGTH)
 
@@ -175,14 +177,24 @@ func get_dodge_cooldown_ratio() -> float:
 	return _dodge_cooldown_left / dodge_cooldown if dodge_cooldown > 0.0 else 0.0
 
 
-## Enemies call this when their attack lands on the player.
-func receive_hit(attacker_position: Vector3, damage: int) -> void:
-	_pending_hits.append({"to_attacker": attacker_position - global_position, "damage": damage})
+## Enemies call this when their attack lands on the player. Attacks that
+## can't be parried (sweeps, shockwaves) pass `parryable = false`.
+func receive_hit(attacker_position: Vector3, damage: int, parryable: bool = true) -> void:
+	(
+		_pending_hits
+		. append(
+			{
+				"to_attacker": attacker_position - global_position,
+				"damage": damage,
+				"parryable": parryable,
+			}
+		)
+	)
 
 
 ## Parry or take damage. Returns true if the hit was parried.
-func resolve_hit(to_attacker: Vector3, damage: int) -> bool:
-	if combat.try_parry(to_attacker, facing):
+func resolve_hit(to_attacker: Vector3, damage: int, parryable: bool = true) -> bool:
+	if parryable and combat.try_parry(to_attacker, facing):
 		parried.emit(to_attacker)
 		_show_parry()
 		return true
@@ -223,7 +235,7 @@ func _process_normal(delta: float) -> void:
 
 func _resolve_pending_hits() -> void:
 	for hit in _pending_hits:
-		resolve_hit(hit["to_attacker"], hit["damage"])
+		resolve_hit(hit["to_attacker"], hit["damage"], hit["parryable"])
 	_pending_hits.clear()
 
 
@@ -237,7 +249,10 @@ func _on_strike_resolved(_kind: PlayerCombat.Kind, deals_damage: bool) -> void:
 	if not deals_damage:
 		return
 	for body in attack_hitbox.get_overlapping_bodies():
-		if body != self and body.has_method("take_damage"):
+		if body == self or not body.has_method("take_damage"):
+			continue
+		# No hits through walls.
+		if body is Node3D and LineOfSight.between(self, body as Node3D):
 			body.take_damage(combat.get_damage())
 
 

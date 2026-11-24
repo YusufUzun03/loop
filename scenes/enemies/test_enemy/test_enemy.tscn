@@ -1,0 +1,102 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scenes/enemies/test_enemy/test_enemy.gd" id="1_enemy"]
+[ext_resource type="Script" path="res://scripts/health.gd" id="2_health"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_body"]
+radius = 0.5
+height = 2.0
+
+[sub_resource type="StandardMaterial3D" id="Mat_body"]
+albedo_color = Color(0.28, 0.27, 0.32, 1)
+roughness = 0.8
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_body"]
+material = SubResource("Mat_body")
+radius = 0.5
+height = 2.0
+
+[sub_resource type="StandardMaterial3D" id="Mat_eye"]
+albedo_color = Color(0.9, 0.9, 0.95, 1)
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 1.5
+
+[sub_resource type="BoxMesh" id="BoxMesh_eye"]
+material = SubResource("Mat_eye")
+size = Vector3(0.4, 0.1, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_weapon"]
+resource_local_to_scene = true
+albedo_color = Color(0.6, 0.6, 0.65, 1)
+metallic = 0.5
+roughness = 0.4
+emission_enabled = true
+emission = Color(1, 0.9, 0.6, 1)
+emission_energy_multiplier = 0.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_weapon"]
+material = SubResource("Mat_weapon")
+size = Vector3(0.15, 0.15, 1.6)
+
+[sub_resource type="StandardMaterial3D" id="Mat_danger"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+albedo_color = Color(1, 0.1, 0.8, 0)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_sweep"]
+material = SubResource("Mat_danger")
+size = Vector2(1, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_ring"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+albedo_color = Color(1, 0.1, 0.8, 0.75)
+
+[sub_resource type="TorusMesh" id="TorusMesh_ring"]
+material = SubResource("Mat_ring")
+inner_radius = 0.9
+outer_radius = 1.0
+
+[node name="TestEnemy" type="CharacterBody3D"]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_enemy")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_body")
+
+[node name="Visual" type="Node3D" parent="."]
+
+[node name="Body" type="MeshInstance3D" parent="Visual"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_body")
+
+[node name="Eye" type="MeshInstance3D" parent="Visual"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, -0.48)
+mesh = SubResource("BoxMesh_eye")
+
+[node name="Weapon" type="MeshInstance3D" parent="Visual"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, 1.1, -0.7)
+mesh = SubResource("BoxMesh_weapon")
+
+[node name="SweepWarning" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("PlaneMesh_sweep")
+
+[node name="ShockwaveRing" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+visible = false
+mesh = SubResource("TorusMesh_ring")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_desired_distance = 0.6
+target_desired_distance = 1.0
+radius = 0.5
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("2_health")
+max_health = 100
