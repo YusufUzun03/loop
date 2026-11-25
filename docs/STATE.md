@@ -1,6 +1,6 @@
 # Durum
 
-Son güncelleme: 2026-11-24
+Son güncelleme: 2026-11-25
 
 ## Şu an
 Repo kuruldu: iskelet, CI, şablonlar ve çalışma kuralları hazır. Memo'nun tasarım notları repoya alındı: oyun tasarımı `docs/GDD.md`, hikâye `docs/LORE.md` (issue #4). Genel teknik yön: `docs/TEKNIK-REHBER.md` ve `docs/decisions/0002-teknik-yon.md`; Godot/oyun skill'leri `.claude/skills/` altında (issue #7).
@@ -11,6 +11,8 @@ Oyuncu prototipi (#9), run kaydı ADR taslağı (#12, `docs/decisions/0004-run-k
 - **Saldırı ve parry (#10):** `scenes/player/player_combat.gd`. Kısa tık hızlı, basılı tut ağır vuruş; dodge saldırıyı iptal eder. Hızlı vuruşla parry: isabetten en çok 0.1 sn önce basmak; ağır vuruşla parry: sadece tam aynı an (~2 kare); saldırana dönük olmak şart; parry yapan vuruş hasar vermez, skill bonus penceresi açar (skill'ler sonra). Parlama ve geçici kod sesi. `scripts/health.gd`. Girdi tamponu (dodge ve saldırı).
 - **Hedef düşman (#11):** `scenes/enemies/test_enemy/`. Oyuncuyu navmesh ile kovalar; parry'lenebilen vuruş (silahta parlama), sola/sağa süpürme (bir taraf güvenli), şok dalgası (üstünden zıpla). Yer uyarıları macenta (Memo, karar). Her saldırının run kaydı için kimliği var. Vuruşlar duvardan geçmez (`scripts/line_of_sight.gd`). Test odasında geçici can yazısı.
 - Memo ikisini Godot'ta oynadı: iyi. 34 headless test.
+
+Oyun planı tek sayfada: `docs/oyun-plani.html` (genel akış + 9 bölüm), tasarım belgelerinin bilgi grafı `docs/oyun-grafi.html`. Yeni tasarım kararı içermez, mevcut belgelerin görselleştirmesidir.
 
 ## Sıradaki
 - Yusuf: ADR 0004'ün teknik onayı (dosya düzeni, `RunRecorder` autoload).
