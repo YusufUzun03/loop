@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Again — Oyun Planı</title>
+<style>
+:root{--bg:#fff;--fg:#1d1d1f;--mute:#6e6e73;--line:#d2d2d7;--soft:#f5f5f7;--acc:#0a8fa8}
+@media (prefers-color-scheme:dark){:root{--bg:#000;--fg:#f5f5f7;--mute:#a1a1a6;--line:#38383a;--soft:#1c1c1e;--acc:#40c8e0}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 -apple-system,"SF Pro Text","Segoe UI",system-ui,sans-serif}
+main{max-width:960px;margin:0 auto;padding:0 20px 96px}
+header{padding:72px 0 40px}
+h1{font-size:clamp(40px,7vw,64px);line-height:1.05;margin:0 0 12px;letter-spacing:-.02em}
+.sub{color:var(--mute);font-size:20px;max-width:640px;margin:0}
+nav{position:sticky;top:0;background:var(--bg);border-bottom:1px solid var(--line);z-index:5;display:flex;gap:4px;overflow-x:auto;padding:10px 0;margin:0 -20px;padding-left:20px;padding-right:20px}
+nav a{color:var(--mute);text-decoration:none;font-size:14px;padding:4px 10px;border-radius:999px;white-space:nowrap}
+nav a:hover{color:var(--fg);background:var(--soft)}
+section{padding:64px 0 0}
+.num{color:var(--acc);font-weight:600;font-size:14px;letter-spacing:.04em}
+h2{font-size:clamp(28px,4.5vw,40px);margin:4px 0 8px;letter-spacing:-.015em;line-height:1.1}
+.lead{color:var(--mute);font-size:18px;margin:0 0 28px;max-width:680px}
+.flow{display:flex;flex-wrap:wrap;align-items:stretch;gap:8px 0;margin:0 0 14px}
+.node{background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:10px 14px;font-size:14px;min-width:96px;max-width:200px}
+.node b{display:block;font-size:14px}
+.node span{color:var(--mute);font-size:12.5px;display:block;margin-top:2px}
+.node.key{border-color:var(--acc)}
+.node.key b{color:var(--acc)}
+.arr{align-self:center;color:var(--mute);padding:0 8px;font-size:18px}
+.tag{font-size:12px;color:var(--mute);margin:18px 0 6px;text-transform:uppercase;letter-spacing:.06em}
+ul.facts{margin:20px 0 0;padding:0;list-style:none;border-top:1px solid var(--line)}
+ul.facts li{padding:10px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:170px 1fr;gap:16px;font-size:15px}
+ul.facts li b{font-weight:600}
+ul.facts li span{color:var(--mute)}
+.note{color:var(--mute);font-size:14px;margin-top:16px}
+@media(max-width:640px){
+ .flow{flex-direction:column;align-items:stretch}.node{max-width:none}
+ .arr{transform:rotate(90deg);padding:2px 0;align-self:flex-start;margin-left:20px}
+ ul.facts li{grid-template-columns:1fr;gap:2px}
+}
+</style>
+</head>
+<body>
+<main>
+<header>
+  <h1>Again</h1>
+  <p class="sub">3D, beceri tabanlı roguelite. Geçmiş run'lar düşman olur, son boss alışkanlıklarını sayar. Çalışma adı; plan, mevcut GDD, LORE ve teknik rehbere dayanır.</p>
+</header>
+<nav id="nav"></nav>
+<div id="root"></div>
+<p class="note">Kaynaklar: docs/GDD.md, docs/LORE.md, docs/TEKNIK-REHBER.md, docs/decisions/0002 ve 0004. "Öneri" ile işaretli olmayan tasarım maddeleri Memo kararıdır. Co-op bu planın dışında, sadece "sonra" notudur.</p>
+</main>
+<script>
+const S=[
+{t:"Genel akış",lead:"Oyunun bir bakışta döngüsü: hub'dan labirente, ölümden tekrar hub'a, finalde Observer.",
+ flows:[
+ {tag:"Çekirdek döngü",n:[["Hub","uyanış, ilerleme"],["Aşama","katlı labirent, 11 oda"],["Odalar","dövüş, mini boss, diğer"],["Boss","3 boss"],["Ölüm / zafer","geri sarma"],["Run kaydı","alışkanlıklar yazılır"],["Hub","tekrar"]],key:[0,3]},
+ {tag:"Uzun yay",n:[["Run'lar","Revenant'lar birikir"],["3 boss geçilir","aşamalar açılır"],["Observer","alışkanlıkları sayar"],["Son","Tyrant / Mercy / Erasure"]],key:[2]}],
+ facts:[["Tür","Roguelite, MMO tarzı 3. şahıs kamera, 3 sınıf (tank, damage, support). Önce tek oyunculu."],["Süre hedefi","Bir run 20-40 dk."]]},
+{t:"Vizyon ve çekirdek",lead:"Oyuncunun yaşayacağı deneyim ve onu taşıyan iki sütun.",
+ flows:[{tag:"Sütunlar",n:[["Beceri","şansa değil ustalığa dayanır"],["Adil okunabilirlik","net sinyal, adil dodge/parry"],["Hafıza","geçmişin düşmana döner"]],key:[0]}],
+ facts:[["Zorluk","Zorlayıcı; upgrade şansı kötü olsa da beceriyle geçilebilmeli."],["Silah","Karakter başına tek silah, değişmez; upgrade tarzı değiştirir."],["Hikâye","Döngü bir yalan; yaratıcı acı izleyen antik bir tanrı. Ses (Voice) önce güvenilir, sonra glitch'li."],["Özgünlük","Tek tek fikirler yeni değil; Observer'ın bu run'ın dövüşünü izleyip sayma kurallarıyla karşılaması kombinasyonu özgün kılar."]]},
+{t:"Oyun sistemleri",lead:"Dövüşten ilerlemeye, birbirine bağlı sistemler.",
+ flows:[
+ {tag:"Dövüş",n:[["Hareket","tepkili"],["Dodge","cooldown, dokunulmazlık yok"],["Saldırı = parry","silahta parlama sinyali"],["Kilitlenme","tuş testle belirlenir"]],key:[1,2]},
+ {tag:"Run kaydı ve geri dönüş",n:[["Run biter","JSON, user://runs/"],["Alışkanlıklar","attack_id'ye göre"],["Revenant","geçmiş benlik düşman olur"],["Ödül","ekstra can ya da eşya (yeniden dövme)"]],key:[2]},
+ {tag:"Observer sayma",n:[["Bu run'ın dövüşleri","hologramla izlenir"],["Kurallar","basit sayma, yapay zekâ yok"],["Karşı desen","final boss"]],key:[2]}],
+ facts:[["Sınıflar","Tank (pasif taunt, parry), damage (menzilli, parry yok, fırlatma bıçakları), support (iyileşme, Revenant olamaz)."],["Düşman","2-3 tür ile başlar; saldırılar önceden işaret verir, uyarı rengi macenta."],["Rupture","İsteğe bağlı, ölüm sahnesi girişli ek karşılaşma."],["Kayıt","Son 30 run tutulur, güvenli yazma (temp + rename)."],["Meta ilerleme","Ölçülü güç açılımı + ayrı kozmetik yol. Ayrıntı açık."]]},
+{t:"Dünya ve seviye tasarımı",lead:"Mini harita yok. Bakış noktaları haritayı gösterir, labirent seed ile birleştirilir.",
+ flows:[
+ {tag:"Aşama yapısı",n:[["Başlangıç","bakış noktası"],["Katlı labirent","merdiven, yeraltı katları"],["Oda türleri","mob, mini boss, diğer"],["Boss odası","aşama sonu"]],key:[1]},
+ {tag:"Üretim hattı",n:[["Greybox","ölçü ve akış"],["Whitebox","oda parçaları"],["Final sanat","ışık, doku"],["Seed ile birleştirme","elle yapılmış parçalar"]],key:[3]}],
+ facts:[["Bakış noktası","Başında dururken tüm haritayı hologramla gösterir (anahtar, rupture, konum)."],["Hub","Dış dünya gri, tek renk baloncuğun camgöbeği parıltısı (öneri)."],["Bedel","Her odayı temizlememenin bedeli: Observer verisi, yıpranma, kararsızlık."],["Açık","Labirent boyutu, kat sayısı, bakış noktası sayısı testle."]]},
+{t:"Sanat yönü",lead:"Etkileyici değil, tutarlı ve okunabilir: tek stil, tek palet, tek ölçek.",
+ flows:[{tag:"Stil karışımı",n:[["Elden Ring","dünya, şekil, hava"],["Cyberpunk","ışık ve vurgu"],["Apex","karakter, silüet"]],key:[]},
+ {tag:"Derinliğe göre ışık",n:[["Yüzey","yeşil"],["Derin","turuncu / sarı"],["Çekirdek","camgöbeği, Observer'ın rengi"]],key:[2]}],
+ facts:[["Tehlike rengi","Macenta, hiçbir teknoloji renginde kullanılmaz."],["Stil","Stilize 3D, pixel art yok. Uyuşmayan asset paketleri karıştırılmaz."],["Kim yapar","Memo yönetir, Claude konsept ve kod görsellerini (shader, efekt, UI) yazar. Modeller CC0 paketlerden, sonra belki ısmarlama."],["Steam","Oyunda görünen/duyulan AI içerik mağazada belirtilir; model, doku ve ses insan yapımı tutulur."],["Eksik","docs/ART.md yazılacak; kahraman ana renkleri ve hub paleti açık."]]},
+{t:"3D varlık hattı",lead:"Bir modelin fikirden oyuna girene kadar yolu.",
+ flows:[{tag:"Model",n:[["Konsept","yazılı, silüet"],["Blockout","ölçü doğrulama"],["Sculpt / retopo","düşük-orta poly"],["UV ve bake","doku"],["Doku","Krita, Material Maker"]],key:[]},
+ {tag:"Animasyon ve aktarım",n:[["Rig","ortak iskelet"],["Animasyon","retarget"],["Blender .glb","Git LFS"],["Godot .tscn","sarmalayıcı sahne"]],key:[3]}],
+ facts:[["Araçlar","Blender, Krita, Material Maker, Audacity, jsfxr."],["Bütçe","Üçgen ve doku bütçeleri vertical slice'ta ölçülüp sabitlenir."],["Kayıt","CC0 paketler docs/ASSETS.md'ye işlenir."]]},
+{t:"Teknik mimari",lead:"Godot 4.7.2, yalnız GDScript. Önce tek oyunculu, ama co-op'a engel olmayacak biçimde.",
+ flows:[{tag:"Katmanlar",n:[["Girdi","niyet (intent) üzerinden"],["Karakter","CharacterBody3D"],["Vuruş","Area3D, RigidBody yok"],["Veri","Resource + @export"],["Üretici","seed'li labirent"],["Kayıt","RunRecorder autoload"]],key:[0]}],
+ facts:[["Render / fizik","Forward+, Jolt."],["Kamera","Yörünge kamera + SpringArm3D."],["Risk 1","Katlı, elle birleştirilmiş labirentte önceden pişirilmiş navmesh çalışacak mı. Vertical slice'ın ana sorusu."],["Risk 2","Dar koridorlarda kamera çarpışması."],["Sonra","Host otoriter ağ; Steam Deck bonus."]]},
+{t:"Ses ve arayüz",lead:"Sade HUD, Voice ile anlatım, uyarlanır müzik.",
+ flows:[{tag:"Ses",n:[["SFX","jsfxr ile prototip"],["Voice","güvenilirden manyağa"],["Müzik","uyarlanır, karar yok"]],key:[1]},
+ {tag:"Arayüz",n:[["Minimal HUD","olay güdümlü"],["Dil","TR / EN"],["Tema","Theme kaynağı"]],key:[]}],
+ facts:[["Ölüm","Yükleme ekranında Voice 'AGAIN' der; oda görünür biçimde geri sarılır."],["Bus düzeni","Müzik, SFX, Voice ayrı; desibel cinsinden slider."]]},
+{t:"Üretim aşamaları",lead:"Her aşamanın çıkış koşulu net; sıradaki aşamaya ancak onu geçince.",
+ flows:[{tag:"Aşamalar",n:[["Prototip","kamera, hareket, dodge"],["İlk oynanabilir","parry + 1 düşman"],["Vertical slice","aşağıdaki tanım"],["Alfa","3 sınıf, 3 boss"],["Beta","cila, denge"],["Gold","Observer, sonlar"]],key:[2]}],
+ facts:[["Vertical slice","Tank, 1 silah, 1 üretilmiş kat, 4-6 oda türü, 2-3 düşman, 1 boss, dodge + parry + kilitlenme, run biter ve hub'a döner."],["Çıkış kriteri","Slice'ta navmesh, kamera ve parry hissi doğrulanır; yoksa tasarım değişir."],["Kapsam dışı","İlk çıkışta 6 boss, özel sunucu, mini harita, pixel art, büyük skill çubuğu yok."]]},
+{t:"Riskler ve açık kararlar",lead:"Memo'ya sorulacaklar ve kesilecekler.",
+ flows:[{tag:"Karar akışı",n:[["Açık soru","Memo'ya sorulur"],["Test","oynanarak ayarlanır"],["Karar","GDD'ye (Memo, karar)"]],key:[1]}],
+ facts:[["Testle belirlenecek","Dodge cooldown (~1-1.5 sn başlangıç), parry penceresi, kilitlenme tuşu, boss ödül sunumu, labirent boyutu."],["Tasarım açık","Bakış noktası içeriği, oda türleri, hub içeriği, support'un skill penceresi, tank taunt, her sınıfın 2-3 skill'i."],["Kesme listesi","Önce: Rupture, kozmetik, ek oda türleri. Sonra: 3. boss."],["Co-op (sonra)","Labirentte ayrılma ve boss'a kimin karar vereceği; ancak tek oyunculu oturduktan sonra."]]}
+];
+const root=document.getElementById('root'),nav=document.getElementById('nav');
+S.forEach((s,i)=>{
+ const id='s'+i;
+ nav.insertAdjacentHTML('beforeend',`<a href="#${id}">${s.t}</a>`);
+ let h=`<section id="${id}"><div class="num">${String(i+1).padStart(2,'0')}</div><h2>${s.t}</h2><p class="lead">${s.lead}</p>`;
+ s.flows.forEach(f=>{
+  h+=`<div class="tag">${f.tag}</div><div class="flow">`+f.n.map((n,j)=>(j?'<div class="arr">→</div>':'')+`<div class="node${f.key.includes(j)?' key':''}"><b>${n[0]}</b><span>${n[1]}</span></div>`).join('')+`</div>`;
+ });
+ h+='<ul class="facts">'+s.facts.map(f=>`<li><b>${f[0]}</b><span>${f[1]}</span></li>`).join('')+'</ul></section>';
+ root.insertAdjacentHTML('beforeend',h);
+});
+</script>
+</body>
+</html>
